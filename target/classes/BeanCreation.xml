@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- bean definitions here -->
+	<bean id="business" class="spring.HAH.demo.Business"></bean>
+
+	<bean id="logger" class="spring.HAH.demo.AOP.MessageLoger"></bean>
+
+	<aop:config>
+		<aop:aspect id="loggerAspect" ref="logger">
+			<aop:before method="BeforeWork"
+				pointcut="execution(public void spring.HAH.demo..*(..))" />
+			<aop:after method="AfterWork"
+				pointcut="execution(public void spring.HAH.demo..*(..))" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>
